@@ -1,9 +1,2024 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aung Aung | Computer Science Portfolio & FocusFlow</title>
+    <meta name="description" content="Personal portfolio and resume of Aung Aung, a Computer Science student, featuring projects, skills, and FocusFlow—a beautiful interactive Pomodoro timer & task organizer.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset & Variable Definitions */
+        :root {
+            --font-primary: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+            
+            /* Theme Transitions */
+            --transition-theme: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+            --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Light Theme Palette */
+            --bg-base: #f8fafc;
+            --bg-surface: rgba(255, 255, 255, 0.7);
+            --bg-surface-solid: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.6);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #64748b;
+            
+            --color-primary: #4f46e5;
+            --color-primary-hover: #4338ca;
+            --color-primary-light: rgba(79, 70, 229, 0.1);
+            
+            --color-success: #059669;
+            --color-success-light: rgba(5, 150, 105, 0.1);
+            --color-danger: #d97706;
+            --color-danger-light: rgba(217, 119, 6, 0.1);
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+            
+            --glass-blur: blur(12px);
+        }
+        
+        [data-theme="dark"] {
+            /* Dark Theme Palette */
+            --bg-base: #090d16;
+            --bg-surface: rgba(17, 24, 39, 0.7);
+            --bg-surface-solid: #111827;
+            --bg-card: rgba(20, 27, 45, 0.6);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            
+            --color-primary: #6366f1;
+            --color-primary-hover: #4f46e5;
+            --color-primary-light: rgba(99, 102, 241, 0.15);
+            
+            --color-success: #10b981;
+            --color-success-light: rgba(16, 185, 129, 0.15);
+            --color-danger: #f59e0b;
+            --color-danger-light: rgba(245, 158, 11, 0.15);
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            color-scheme: light dark;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            transition: var(--transition-theme);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        p {
+            color: var(--text-secondary);
+        }
+        
+        a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        a:hover {
+            color: var(--color-primary-hover);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-tertiary);
+        }
+        
+        /* Layout Utilities */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--color-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Glass Card Base */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            box-shadow: var(--shadow-glass);
+            transition: var(--transition-theme);
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-surface);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-theme);
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4.5rem;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            box-shadow: 0 0 12px var(--color-primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+        
+        /* Controls & Switch */
+        .theme-toggle-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.6rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+        
+        .theme-toggle-btn:hover {
+            background-color: var(--border-color);
+            transform: scale(1.05);
+        }
+        
+        .theme-toggle-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+        
+        .theme-toggle-btn .sun-icon {
+            display: none;
+        }
+        
+        [data-theme="dark"] .theme-toggle-btn .sun-icon {
+            display: block;
+        }
+        
+        [data-theme="dark"] .theme-toggle-btn .moon-icon {
+            display: none;
+        }
+        
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .mobile-toggle svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+        
+        /* Hero Section */
+        #hero {
+            padding: 9rem 0 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg-glow {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--color-primary-light) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: var(--color-primary-light);
+            color: var(--color-primary);
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-tag-pulse {
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(79, 70, 229, 0); }
+            100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-title span {
+            color: var(--color-primary);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #ffffff;
+            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: var(--bg-surface-solid);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+            transform: translateY(-2px);
+        }
+        
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-mesh {
+            width: 320px;
+            height: 320px;
+            border-radius: 2rem;
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, rgba(79, 70, 229, 0.4) 100%);
+            border: 2px solid var(--border-color);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .profile-mesh::after {
+            content: "CS";
+            font-family: var(--font-heading);
+            font-size: 6rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.08);
+            position: absolute;
+        }
+        
+        .mesh-dot-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--text-tertiary) 1.5px, transparent 1.5px);
+            background-size: 16px 16px;
+            opacity: 0.15;
+        }
+        
+        .floating-badge {
+            position: absolute;
+            bottom: 20px;
+            left: -20px;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: var(--shadow-lg);
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .floating-badge-2 {
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: var(--shadow-lg);
+            animation: float 4s ease-in-out 2s infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Resume Section */
+        #resume {
+            background-color: rgba(79, 70, 229, 0.02);
+        }
+        
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .resume-column-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .resume-card {
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .resume-item {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--border-color);
+            margin-bottom: 2.5rem;
+        }
+        
+        .resume-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .resume-item::before {
+            content: "";
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            border: 2px solid var(--bg-base);
+            box-shadow: 0 0 6px var(--color-primary);
+        }
+        
+        .resume-date {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resume-item-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .resume-item-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.75rem;
+        }
+        
+        .resume-item p {
+            font-size: 0.95rem;
+        }
+        
+        /* Skills Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .skill-group {
+            padding: 1.5rem;
+        }
+        
+        .skill-group h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag {
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            border-radius: 0.5rem;
+            transition: var(--transition-fast);
+        }
+        
+        .skill-tag:hover {
+            border-color: var(--color-primary);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .project-img-placeholder {
+            height: 180px;
+            background: linear-gradient(135deg, var(--color-primary-light) 0%, rgba(79, 70, 229, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            color: var(--color-primary);
+        }
+        
+        .project-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background-color: var(--bg-surface-solid);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .project-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .project-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .project-desc {
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+        
+        .project-link-btn {
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        /* FocusFlow (Pomodoro App) Section */
+        #focusflow {
+            background-color: rgba(79, 70, 229, 0.02);
+            position: relative;
+        }
+        
+        .focus-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        
+        /* FocusFlow Timer UI */
+        .timer-card {
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .timer-modes {
+            display: flex;
+            background: var(--bg-surface-solid);
+            padding: 0.4rem;
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .timer-mode-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .timer-mode-btn:hover {
+            color: var(--text-primary);
+        }
+        
+        .timer-mode-btn.active {
+            background-color: var(--color-primary);
+            color: #ffffff;
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* Timer Ring & Display */
+        .timer-display-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .timer-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .timer-circle-bg {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 10;
+        }
+        
+        .timer-circle-progress {
+            fill: none;
+            stroke: var(--color-primary);
+            stroke-width: 10;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.1s linear, stroke 0.4s ease;
+        }
+        
+        .timer-text-wrapper {
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .timer-clock {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+        
+        .timer-status {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+            color: var(--color-primary);
+        }
+        
+        .timer-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .timer-btn-round {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background-color: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-fast);
+        }
+        
+        .timer-btn-round:hover {
+            transform: scale(1.05);
+            background-color: var(--border-color);
+        }
+        
+        .timer-btn-round.play-pause {
+            width: 68px;
+            height: 68px;
+            background-color: var(--color-primary);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+        }
+        
+        .timer-btn-round.play-pause:hover {
+            background-color: var(--color-primary-hover);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.4);
+        }
+        
+        .timer-btn-round svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+        
+        .timer-btn-round.play-pause svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* FocusFlow Task UI */
+        .tasks-card {
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .tasks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tasks-stats {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            background: var(--color-primary-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+        }
+        
+        .active-task-banner {
+            background: var(--color-primary-light);
+            border: 1px solid var(--color-primary);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% { border-color: rgba(79, 70, 229, 0.4); }
+            50% { border-color: rgba(79, 70, 229, 1); }
+            100% { border-color: rgba(79, 70, 229, 0.4); }
+        }
+        
+        .active-task-banner-text {
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+        
+        .active-task-banner-text strong {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-primary);
+        }
+        
+        /* Task Input Form */
+        .task-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .task-input {
+            flex-grow: 1;
+            padding: 0.8rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-surface-solid);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+        
+        .task-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-light);
+        }
+        
+        .task-add-btn {
+            background-color: var(--color-primary);
+            color: #ffffff;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+        
+        .task-add-btn:hover {
+            background-color: var(--color-primary-hover);
+        }
+        
+        .task-add-btn svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+        }
+        
+        /* Task List Items */
+        .task-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-height: 280px;
+            overflow-y: auto;
+            padding-right: 0.25rem;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1rem;
+            background: var(--bg-surface-solid);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+        
+        .task-item:hover {
+            border-color: var(--text-tertiary);
+            transform: translateY(-1px);
+        }
+        
+        .task-item.selected {
+            border-color: var(--color-primary);
+            background: var(--color-primary-light);
+        }
+        
+        .task-checkbox-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .task-checkbox-custom {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 2px solid var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+            color: transparent;
+        }
+        
+        .task-item.completed .task-checkbox-custom {
+            background-color: var(--color-success);
+            border-color: var(--color-success);
+            color: #ffffff;
+        }
+        
+        .task-checkbox-custom svg {
+            width: 12px;
+            height: 12px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 3;
+        }
+        
+        .task-title-text {
+            flex-grow: 1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: var(--transition-fast);
+        }
+        
+        .task-item.completed .task-title-text {
+            text-decoration: line-through;
+            color: var(--text-tertiary);
+        }
+        
+        .task-item-stats {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            white-space: nowrap;
+        }
+        
+        .task-item-stats svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+        
+        .task-action-btn {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+        
+        .task-action-btn:hover {
+            color: var(--color-danger);
+            background-color: var(--color-danger-light);
+        }
+        
+        .task-action-btn svg {
+            width: 1.1rem;
+            height: 1.1rem;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--bg-surface-solid);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            text-align: center;
+            transition: var(--transition-theme);
+        }
+        
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-socials a {
+            color: var(--text-secondary);
+        }
+        
+        .footer-socials a:hover {
+            color: var(--color-primary);
+        }
+        
+        .footer-text {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media (max-width: 968px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.75rem;
+            }
+            
+            .hero-actions {
+                justify-content: center;
+            }
+            
+            .hero-image-wrapper {
+                order: -1;
+            }
+            
+            .resume-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .focus-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 4.5rem;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-surface-solid);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--shadow-lg);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+    <!-- Header & Navigation -->
+    <header id="header-nav">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span class="logo-dot"></span>
+                Aung Aung
+            </a>
+            
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#resume">About & Resume</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#focusflow">FocusFlow App</a></li>
+                <li>
+                    <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                        <!-- Moon Icon -->
+                        <svg class="moon-icon" viewBox="0 0 24 24">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <!-- Sun Icon -->
+                        <svg class="sun-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+            
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
 
+    <main>
+        
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <span class="hero-tag-pulse"></span>
+                        Open to Opportunities
+                    </div>
+                    <h1 class="hero-title">
+                        Hi, I'm <span>Aung Aung</span><br>Computer Science Student
+                    </h1>
+                    <p class="hero-subtitle">
+                        Passionate software developer focusing on beautiful frontend layouts, solid algorithm designs, and robust interactive web applications built with modern tools.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#focusflow" class="btn btn-primary">Try FocusFlow App</a>
+                        <a href="#resume" class="btn btn-secondary">View My Resume</a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper">
+                    <div class="profile-mesh">
+                        <div class="mesh-dot-grid"></div>
+                    </div>
+                    <div class="floating-badge">
+                        <span>🎓</span>
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.85rem;">B.S. CS</div>
+                            <div style="font-size: 0.75rem; color: var(--text-tertiary);">University Student</div>
+                        </div>
+                    </div>
+                    <div class="floating-badge-2">
+                        <span>⏱️</span>
+                        <div>
+                            <div style="font-weight: 700; font-size: 0.85rem;">Focusflow</div>
+                            <div style="font-size: 0.75rem; color: var(--text-tertiary);">AI-Crafted Tool</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Resume Section -->
+        <section id="resume">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Education & Skills</h2>
+                    <p>My academic history, core competencies, and technologies I work with daily.</p>
+                </div>
+                
+                <div class="resume-grid">
+                    <div>
+                        <h3 class="resume-column-title">
+                            🎓 Education
+                        </h3>
+                        
+                        <div class="glass-card resume-card">
+                            <div class="resume-item">
+                                <span class="resume-date">2023 - Present</span>
+                                <h4 class="resume-item-title">Bachelor of Computer Science</h4>
+                                <div class="resume-item-subtitle">University of Computer Studies</div>
+                                <p>Specializing in Software Engineering and Intelligent Systems. Maintained a top GPA, active member of the student developer association.</p>
+                            </div>
+                            
+                            <div class="resume-item">
+                                <span class="resume-date">2020 - 2022</span>
+                                <h4 class="resume-item-title">Pre-University CS Prep</h4>
+                                <div class="resume-item-subtitle">Advanced Science & Math Track</div>
+                                <p>Focused on Advanced Mathematics, Foundations of Algorithmic Logic, and Introduction to programming paradigms using C++ and Python.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="resume-column-title">
+                            ⚡ Tech Stack & Skills
+                        </h3>
+                        
+                        <div class="skills-container">
+                            <div class="glass-card skill-group">
+                                <h4>Languages</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">JavaScript (ES6+)</span>
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">Java</span>
+                                    <span class="skill-tag">HTML5 & CSS3</span>
+                                    <span class="skill-tag">SQL</span>
+                                </div>
+                            </div>
+                            
+                            <div class="glass-card skill-group">
+                                <h4>Frontend</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Vanilla JS</span>
+                                    <span class="skill-tag">CSS Flex/Grid</span>
+                                    <span class="skill-tag">SVG Animation</span>
+                                    <span class="skill-tag">Web APIs</span>
+                                    <span class="skill-tag">TailwindCSS</span>
+                                </div>
+                            </div>
+                            
+                            <div class="glass-card skill-group">
+                                <h4>Backend</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Node.js</span>
+                                    <span class="skill-tag">Express.js</span>
+                                    <span class="skill-tag">REST APIs</span>
+                                    <span class="skill-tag">SQLite</span>
+                                </div>
+                            </div>
+                            
+                            <div class="glass-card skill-group">
+                                <h4>Tools & Dev</h4>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Git & GitHub</span>
+                                    <span class="skill-tag">VS Code</span>
+                                    <span class="skill-tag">AI Coding</span>
+                                    <span class="skill-tag">Responsive Dev</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Featured Projects</h2>
+                    <p>A selection of applications built during my academic studies, combining logic, design, and user experience.</p>
+                </div>
+                
+                <div class="projects-grid">
+                    <!-- Project 1: FocusFlow -->
+                    <article class="glass-card project-card">
+                        <div class="project-img-placeholder">
+                            <div class="project-icon" style="color: var(--color-primary);">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span class="project-tag">HTML5</span>
+                                <span class="project-tag">CSS3</span>
+                                <span class="project-tag">Vanilla JS</span>
+                            </div>
+                            <h3 class="project-title">FocusFlow</h3>
+                            <p class="project-desc">A premium interactive Pomodoro timer combined with local task organizing, visual progress tracking, and custom sound synthesis via Web Audio API.</p>
+                            <div class="project-links">
+                                <a href="#focusflow" class="project-link-btn">
+                                    Launch App
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 2: Algorithm Visualizer -->
+                    <article class="glass-card project-card">
+                        <div class="project-img-placeholder">
+                            <div class="project-icon" style="color: #059669;">
+                                <svg viewBox="0 0 24 24">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span class="project-tag">Algorithms</span>
+                                <span class="project-tag">DOM manipulation</span>
+                                <span class="project-tag">Animation</span>
+                            </div>
+                            <h3 class="project-title">Algorithm Visualizer</h3>
+                            <p class="project-desc">An interactive visual representation of Sorting (Bubble, Quick, Merge) and Pathfinding (Dijkstra) algorithms. Built to make learning structures intuitive.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link-btn" onclick="event.preventDefault(); alert('This is a resume showcase card. The live app is available in my separate repository!');">
+                                    GitHub Repo
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 3: EcoShop -->
+                    <article class="glass-card project-card">
+                        <div class="project-img-placeholder">
+                            <div class="project-icon" style="color: #d97706;">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span class="project-tag">Node.js</span>
+                                <span class="project-tag">Express</span>
+                                <span class="project-tag">Database</span>
+                            </div>
+                            <h3 class="project-title">EcoShop Frontend</h3>
+                            <p class="project-desc">A mock e-commerce storefront showcasing eco-friendly goods. Integrates advanced client filters, search index systems, and responsive checkout pipelines.</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link-btn" onclick="event.preventDefault(); alert('This is a resume showcase card. The live app is available in my separate repository!');">
+                                    GitHub Repo
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FocusFlow Application Section -->
+        <section id="focusflow">
+            <div class="container">
+                <div class="section-header">
+                    <h2>FocusFlow Web App</h2>
+                    <p>A smart, interactive Pomodoro timer and task manager designed with CSS Glassmorphism and synthesized notification chimes. Select tasks below, start the clock, and maximize productivity.</p>
+                </div>
+                
+                <div class="focus-grid">
+                    <!-- Column 1: Pomodoro Timer Card -->
+                    <div class="glass-card timer-card">
+                        <div class="timer-modes">
+                            <button class="timer-mode-btn active" id="mode-work" onclick="setTimerMode('work')">Work Session</button>
+                            <button class="timer-mode-btn" id="mode-short" onclick="setTimerMode('short')">Short Break</button>
+                            <button class="timer-mode-btn" id="mode-long" onclick="setTimerMode('long')">Long Break</button>
+                        </div>
+                        
+                        <div class="timer-display-container">
+                            <svg class="timer-svg" viewBox="0 0 220 220">
+                                <circle class="timer-circle-bg" cx="110" cy="110" r="100"></circle>
+                                <circle class="timer-circle-progress" id="timer-progress" cx="110" cy="110" r="100"></circle>
+                            </svg>
+                            <div class="timer-text-wrapper">
+                                <div class="timer-clock" id="timer-clock">25:00</div>
+                                <span class="timer-status" id="timer-status">Get to work</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timer-controls">
+                            <!-- Reset -->
+                            <button class="timer-btn-round" id="timer-reset" aria-label="Reset timer">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                                </svg>
+                            </button>
+                            
+                            <!-- Start / Pause -->
+                            <button class="timer-btn-round play-pause" id="timer-toggle" aria-label="Play or pause timer">
+                                <!-- Play icon (default) -->
+                                <svg class="play-icon" viewBox="0 0 24 24">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                                <!-- Pause icon (hidden initially) -->
+                                <svg class="pause-icon" viewBox="0 0 24 24" style="display: none;">
+                                    <rect x="6" y="4" width="4" height="16"></rect>
+                                    <rect x="14" y="4" width="4" height="16"></rect>
+                                </svg>
+                            </button>
+                            
+                            <!-- Skip Session -->
+                            <button class="timer-btn-round" id="timer-skip" aria-label="Skip session">
+                                <svg viewBox="0 0 24 24">
+                                    <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                                    <line x1="19" y1="5" x2="19" y2="19"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Column 2: Integrated Task List -->
+                    <div class="glass-card tasks-card">
+                        <div class="tasks-header">
+                            <h3 style="font-size: 1.3rem;">Tasks Organizer</h3>
+                            <span class="tasks-stats" id="tasks-summary">0 completed</span>
+                        </div>
+                        
+                        <!-- Active Task Info Display -->
+                        <div class="active-task-banner" id="active-task-banner">
+                            <div class="active-task-banner-text" id="active-task-text">
+                                <strong>Active Focus Goal</strong>
+                                <span>No task selected. Select one below!</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Task input form -->
+                        <form class="task-form" id="task-form">
+                            <input type="text" class="task-input" id="task-input" placeholder="What are you working on next?" required autocomplete="off">
+                            <button type="submit" class="task-add-btn" aria-label="Add new task">
+                                <svg viewBox="0 0 24 24">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </form>
+                        
+                        <!-- Task list view -->
+                        <ul class="task-list" id="task-list">
+                            <!-- Tasks are rendered dynamically here -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <span class="logo-dot"></span>
+                Aung Aung
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/aungaungytk" target="_blank" aria-label="GitHub Profile">
+                    <!-- GitHub Icon -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-text">
+                &copy; 2026 Aung Aung. Built with precision and AI design layouts.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        /* ==========================================
+           1. Theme Mode Management
+           ========================================== */
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // Load initial theme from localStorage or system setting
+        const getPreferredTheme = () => {
+            const stored = localStorage.getItem('theme');
+            if (stored) return stored;
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        };
+        
+        const setTheme = (theme) => {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+        
+        themeToggle.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') || getPreferredTheme();
+            const next = current === 'dark' ? 'light' : 'dark';
+            setTheme(next);
+        });
+        
+        // Initialize Theme
+        setTheme(getPreferredTheme());
+
+        /* ==========================================
+           2. Responsive Navigation Menu
+           ========================================== */
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Navigation Active State Highlighting on Scroll
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+        
+        window.addEventListener('scroll', () => {
+            let currentActiveSection = '';
+            
+            sections.forEach(sec => {
+                const sectionTop = sec.offsetTop;
+                const sectionHeight = sec.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    currentActiveSection = sec.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${currentActiveSection}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        /* ==========================================
+           3. FocusFlow Pomodoro Timer Engine
+           ========================================== */
+        const timerSettings = {
+            work: 25 * 60,
+            short: 5 * 60,
+            long: 15 * 60
+        };
+        
+        let currentMode = 'work';
+        let timerInterval = null;
+        let isRunning = false;
+        let timeLeft = timerSettings.work;
+        let totalSessionDuration = timerSettings.work;
+        
+        // DOM Cache
+        const timerClock = document.getElementById('timer-clock');
+        const timerStatus = document.getElementById('timer-status');
+        const timerToggleBtn = document.getElementById('timer-toggle');
+        const playIcon = timerToggleBtn.querySelector('.play-icon');
+        const pauseIcon = timerToggleBtn.querySelector('.pause-icon');
+        const timerResetBtn = document.getElementById('timer-reset');
+        const timerSkipBtn = document.getElementById('timer-skip');
+        const progressCircle = document.getElementById('timer-progress');
+        
+        const CIRCLE_RADIUS = 100;
+        const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
+        
+        // Initialize Progress Ring
+        progressCircle.style.strokeDasharray = `${CIRCLE_CIRCUMFERENCE} ${CIRCLE_CIRCUMFERENCE}`;
+        progressCircle.style.strokeDashoffset = 0;
+        
+        // Play Chime notification using Web Audio API
+        function playChime() {
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) return;
+                
+                const audioCtx = new AudioContextClass();
+                
+                // Tone helper function
+                const synthTone = (freq, startOffset, length) => {
+                    const osc = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+                    
+                    osc.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, audioCtx.currentTime + startOffset);
+                    
+                    gainNode.gain.setValueAtTime(0, audioCtx.currentTime + startOffset);
+                    gainNode.gain.linearRampToValueAtTime(0.25, audioCtx.currentTime + startOffset + 0.05);
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + startOffset + length);
+                    
+                    osc.start(audioCtx.currentTime + startOffset);
+                    osc.stop(audioCtx.currentTime + startOffset + length);
+                };
+                
+                // Crystalline double chime (E5 then A5)
+                synthTone(659.25, 0, 0.4);      // E5
+                synthTone(880.00, 0.15, 0.6);   // A5
+            } catch (err) {
+                console.error("Audio chime synthesis failed:", err);
+            }
+        }
+        
+        function updateProgressRing() {
+            const elapsed = totalSessionDuration - timeLeft;
+            const fraction = elapsed / totalSessionDuration;
+            const offset = CIRCLE_CIRCUMFERENCE * fraction;
+            progressCircle.style.strokeDashoffset = offset;
+        }
+        
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        function displayTime() {
+            timerClock.textContent = formatTime(timeLeft);
+            updateProgressRing();
+        }
+        
+        function setTimerMode(mode) {
+            // Update Active Mode state in DOM
+            document.querySelectorAll('.timer-mode-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`mode-${mode}`).classList.add('active');
+            
+            // Apply variables
+            currentMode = mode;
+            timeLeft = timerSettings[mode];
+            totalSessionDuration = timeLeft;
+            
+            // Adjust visual colors of progress ring based on mode
+            if (mode === 'work') {
+                progressCircle.style.stroke = 'var(--color-primary)';
+                timerStatus.textContent = 'Get to work';
+            } else if (mode === 'short') {
+                progressCircle.style.stroke = 'var(--color-success)';
+                timerStatus.textContent = 'Take a breather';
+            } else {
+                progressCircle.style.stroke = 'var(--color-danger)';
+                timerStatus.textContent = 'Relax & Recharge';
+            }
+            
+            pauseTimer();
+            displayTime();
+        }
+        
+        function startTimer() {
+            if (isRunning) return;
+            isRunning = true;
+            playIcon.style.display = 'none';
+            pauseIcon.style.display = 'block';
+            
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                displayTime();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    isRunning = false;
+                    playChime();
+                    handleSessionComplete();
+                }
+            }, 1000);
+        }
+        
+        function pauseTimer() {
+            if (!isRunning) return;
+            isRunning = false;
+            playIcon.style.display = 'block';
+            pauseIcon.style.display = 'none';
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+        
+        function toggleTimer() {
+            if (isRunning) {
+                pauseTimer();
+            } else {
+                startTimer();
+            }
+        }
+        
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = timerSettings[currentMode];
+            displayTime();
+        }
+        
+        function skipTimer() {
+            pauseTimer();
+            // Rotate session work -> short -> work -> long
+            if (currentMode === 'work') {
+                setTimerMode('short');
+            } else if (currentMode === 'short') {
+                setTimerMode('work');
+            } else {
+                setTimerMode('work');
+            }
+        }
+        
+        function handleSessionComplete() {
+            // Add focus cycle to active task if it exists
+            if (currentMode === 'work' && activeTaskId) {
+                const task = tasks.find(t => t.id === activeTaskId);
+                if (task) {
+                    task.cycles++;
+                    saveTasks();
+                    renderTasks();
+                }
+            }
+            
+            // Alert user & prompt next step
+            if (currentMode === 'work') {
+                alert("Awesome job! Focus session completed. Take a break.");
+                setTimerMode('short');
+            } else {
+                alert("Break ended! Ready to focus again?");
+                setTimerMode('work');
+            }
+        }
+        
+        // Event Listeners
+        timerToggleBtn.addEventListener('click', toggleTimer);
+        timerResetBtn.addEventListener('click', resetTimer);
+        timerSkipBtn.addEventListener('click', skipTimer);
+        
+        // Initialize timer defaults
+        setTimerMode('work');
+
+        /* ==========================================
+           4. FocusFlow Integrated Task Organizer
+           ========================================== */
+        let tasks = [];
+        let activeTaskId = null;
+        
+        // Cache DOM elements
+        const taskForm = document.getElementById('task-form');
+        const taskInput = document.getElementById('task-input');
+        const taskList = document.getElementById('task-list');
+        const tasksSummary = document.getElementById('tasks-summary');
+        const activeTaskBanner = document.getElementById('active-task-banner');
+        const activeTaskText = document.getElementById('active-task-text');
+        
+        // Load tasks from storage
+        function loadTasks() {
+            const data = localStorage.getItem('focusflow_tasks');
+            const storedActiveId = localStorage.getItem('focusflow_active_id');
+            if (data) {
+                tasks = JSON.parse(data);
+            }
+            if (storedActiveId) {
+                activeTaskId = storedActiveId;
+            }
+        }
+        
+        // Save tasks
+        function saveTasks() {
+            localStorage.setItem('focusflow_tasks', JSON.stringify(tasks));
+            if (activeTaskId) {
+                localStorage.setItem('focusflow_active_id', activeTaskId);
+            } else {
+                localStorage.removeItem('focusflow_active_id');
+            }
+        }
+        
+        // Create new task object
+        function addTask(name) {
+            const newTask = {
+                id: Date.now().toString(),
+                name: name.trim(),
+                completed: false,
+                cycles: 0
+            };
+            tasks.push(newTask);
+            
+            // Auto-select first added task if none selected
+            if (!activeTaskId) {
+                activeTaskId = newTask.id;
+            }
+            
+            saveTasks();
+            renderTasks();
+        }
+        
+        // Toggle complete
+        function toggleTaskComplete(id, event) {
+            event.stopPropagation(); // Avoid selecting task when checking it off
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.completed = !task.completed;
+                
+                // If the active task is completed, deselect it
+                if (task.completed && activeTaskId === id) {
+                    // Try to find another incomplete task
+                    const nextIncomplete = tasks.find(t => !t.completed && t.id !== id);
+                    activeTaskId = nextIncomplete ? nextIncomplete.id : null;
+                }
+                
+                saveTasks();
+                renderTasks();
+            }
+        }
+        
+        // Remove task
+        function removeTask(id, event) {
+            event.stopPropagation(); // Avoid triggering click events on card
+            tasks = tasks.filter(t => t.id !== id);
+            
+            // Reset active ID if deleted
+            if (activeTaskId === id) {
+                const nextTask = tasks.find(t => !t.completed);
+                activeTaskId = nextTask ? nextTask.id : null;
+            }
+            
+            saveTasks();
+            renderTasks();
+        }
+        
+        // Select active focus task
+        function selectActiveTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (task && !task.completed) {
+                activeTaskId = id;
+                saveTasks();
+                renderTasks();
+            }
+        }
+        
+        // Render view
+        function renderTasks() {
+            taskList.innerHTML = '';
+            
+            if (tasks.length === 0) {
+                taskList.innerHTML = `<li style="padding: 2rem; text-align: center; color: var(--text-tertiary); font-size: 0.95rem; border: 1px dashed var(--border-color); border-radius: 0.75rem;">No tasks added. Add one above!</li>`;
+                activeTaskBanner.style.display = 'none';
+                tasksSummary.textContent = '0 completed';
+                return;
+            }
+            
+            let completedCount = 0;
+            
+            tasks.forEach(task => {
+                if (task.completed) completedCount++;
+                
+                const isSelected = task.id === activeTaskId;
+                
+                const item = document.createElement('li');
+                item.className = `task-item ${task.completed ? 'completed' : ''} ${isSelected ? 'selected' : ''}`;
+                item.addEventListener('click', () => selectActiveTask(task.id));
+                
+                item.innerHTML = `
+                    <div class="task-checkbox-container" onclick="toggleTaskComplete('${task.id}', event)">
+                        <div class="task-checkbox-custom">
+                            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        </div>
+                    </div>
+                    <span class="task-title-text">${escapeHtml(task.name)}</span>
+                    <div class="task-item-stats">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>${task.cycles} cycles</span>
+                    </div>
+                    <button class="task-action-btn" onclick="removeTask('${task.id}', event)" aria-label="Delete task">
+                        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                `;
+                
+                taskList.appendChild(item);
+            });
+            
+            // Update stats
+            tasksSummary.textContent = `${completedCount} of ${tasks.length} completed`;
+            
+            // Update Active Task Banner
+            const activeTask = tasks.find(t => t.id === activeTaskId);
+            if (activeTask && !activeTask.completed) {
+                activeTaskBanner.style.display = 'flex';
+                activeTaskText.innerHTML = `
+                    <strong>Active Focus Goal</strong>
+                    <span>${escapeHtml(activeTask.name)} (${activeTask.cycles} cycles focusing)</span>
+                `;
+            } else {
+                // If there are tasks, but none selected or active selected is completed
+                const firstIncomplete = tasks.find(t => !t.completed);
+                if (firstIncomplete) {
+                    activeTaskId = firstIncomplete.id;
+                    saveTasks();
+                    // recursion to update
+                    renderTasks();
+                } else {
+                    activeTaskBanner.style.display = 'none';
+                }
+            }
+        }
+        
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+        
+        // Handle Submit
+        taskForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = taskInput.value;
+            if (text && text.trim().length > 0) {
+                addTask(text);
+                taskInput.value = '';
+            }
+        });
+        
+        // Load & display initial state
+        loadTasks();
+        renderTasks();
+    </script>
 </body>
 </html>
